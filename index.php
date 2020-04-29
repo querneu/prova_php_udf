@@ -3,7 +3,7 @@ require('./entity/beneficiario.class.php');
 require('./dao/DAOBeneficiario.class.php');
 $daobeneficiario = new DAOBeneficiario;
 $beneficiario = new Beneficiario;
-$lista = $daobeneficiario->Buscar("");
+$lista = $daobeneficiario->Buscar("Lucas");
 if(isset($_POST['nome'])&& isset($_POST['cpf']) && isset($_POST['data_nascimento']) && isset($_POST['telefone'])){
     $beneficiario->setId(md5(uniqid("")));
     $beneficiario->setNome($_POST['nome']);

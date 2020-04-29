@@ -26,14 +26,13 @@ class DAOBeneficiario{
     public function Buscar($filtro){
         try{
             if(isset($filtro) && $filtro<>""){
-                $sql = "SELECT * FROM prova_php.beneficiarios WHERE id LIKE :id OR nome LIKE :nome ORDER BY nome";
+                $sql = "SELECT * FROM prova_php.beneficiarios WHERE  nome LIKE '%' :nome '%' ORDER BY nome";
             }else{
                 $sql = "SELECT * FROM prova_php.beneficiarios ORDER BY nome";
             }
             $conexao = new PDO('mysql:host=localhost;prova_php','dba_sql','admin');
             $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $resultado = $conexao->prepare($sql);
-            $resultado->bindValue(":id", $filtro);
             $resultado->bindValue(":nome", $filtro);
             $resultado->execute();
             $lista = $resultado->fetchAll(PDO::FETCH_ASSOC);
